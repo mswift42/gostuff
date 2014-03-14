@@ -3,6 +3,14 @@ package main
 
 import "fmt"
 
+func main() {
+        forLoop()
+        forCharacter()
+        forCharacterConc()
+        bitwiseComplement()
+        fizzBuzz()
+}
+
 func forLoop() {
         for i := 0; i < 15; i++ {
                 fmt.Printf("the int is %d\n", i)
@@ -39,12 +47,4 @@ func fizzBuzz() {
                         fmt.Printf("%d\n", i)
                 }
         }
-}
-
-func main() {
-        forLoop()
-        forCharacter()
-        forCharacterConc()
-        bitwiseComplement()
-        fizzBuzz()
 }
