@@ -8,6 +8,14 @@ func main() {
         vcard()
         printRec()
         printAnonymous()
+        em := &employee{3232.10}
+        em.giveRaise(1.30)
+        fmt.Println(em)
+        c1 := &car{wheelCount: 22}
+        fmt.Println(c1.numberofWheels())
+        m1 := &mercedes{car{wheelCount: 4}}
+        fmt.Println(m1.numberofWheels())
+        m1.sayHiToMerkel()
 }
 
 func mapDays() map[int]string {
@@ -48,6 +56,7 @@ func printStruct() {
         fmt.Printf("the struct is : %v\n", ms)
         ms2 := &struct1{20, 33.3, "martin"}
         fmt.Println(ms2)
+
 }
 
 type address struct {
@@ -71,17 +80,17 @@ type rectangle struct {
         width  float32
 }
 
-func area(r *rectangle) float32 {
+func (r *rectangle) area() float32 {
         return r.length * r.width
 }
-func perimeter(r *rectangle) float32 {
+func (r *rectangle) perimeter() float32 {
         return 2*r.length + 2*r.width
 }
 func printRec() {
         r1 := &rectangle{3.0, 4.5}
         r2 := &rectangle{2.3, 4.1}
-        fmt.Printf("area of r1 is: %.2f\n", area(r1))
-        fmt.Printf("perimeter of r2 is: %.2f\n", perimeter(r2))
+        fmt.Printf("area of r1 is: %.2f\n", r1.area())
+        fmt.Printf("perimeter of r2 is: %.2f\n", r2.perimeter())
 
 }
 
@@ -94,4 +103,32 @@ type anonymous struct {
 func printAnonymous() {
         a1 := &anonymous{3.2, 4, "hallo"}
         fmt.Println(a1)
+}
+
+type employee struct {
+        salary float32
+}
+
+func (emp *employee) giveRaise(raise float32) {
+        emp.salary *= raise
+}
+
+type engine interface {
+        Start()
+        Stop()
+}
+type car struct {
+        engine
+        wheelCount int
+}
+type mercedes struct {
+        car
+}
+
+func (c *car) numberofWheels() int {
+        return c.wheelCount
+}
+
+func (m *mercedes) sayHiToMerkel() {
+        fmt.Println("hi, angie")
 }
