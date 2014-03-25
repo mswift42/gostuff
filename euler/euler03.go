@@ -16,7 +16,7 @@ func isprime(i int) bool {
         if i == 2 {
                 return false
         }
-        for a := 3; a < int(math.Sqrt(float64(i))); a = a + 2 {
+        for a := 3; a < int(math.Sqrt(float64(i))); a += 2 {
                 if i%a == 0 {
                         return false
                 }
@@ -30,9 +30,27 @@ func euler03() int {
                         return i
                 }
         }
-        return 0
+        return -1
+}
+
+func sieve() []int {
+        primes := make([]int, 1000001)
+        for i := 2; i < len(primes); i++ {
+                primes[i] = i
+        }
+        for i := 2; i < len(primes); i++ {
+                for j := i + i; j < len(primes); j += i {
+                        primes[j] = 0
+                }
+
+        }
+        return primes
+
 }
 
 func main() {
         fmt.Println(euler03())
+        fmt.Println(sieve()[:100])
+        fmt.Println(sieve()[11])
+        fmt.Println(primesieve(200))
 }
