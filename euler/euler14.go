@@ -22,8 +22,6 @@ import "fmt"
 // million.
 
 func main() {
-        fmt.Println(collatz(13))
-        fmt.Println(collatzlength(13))
         fmt.Println(euler14())
 }
 
