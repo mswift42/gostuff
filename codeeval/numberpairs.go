@@ -24,7 +24,6 @@ func main() {
 				split := strings.Split(parameters, ";")
 				nums, target := split[0], split[1]
 				numberPair(nums, target)
-				numberPair("2,4,5,6,9,11,15", "20")
 			}
 			str, err = reader.ReadString('\n')
 
@@ -34,15 +33,15 @@ func main() {
 	}
 }
 func numberPair(s, t string) {
-	intslice := make([]int, 0)
+	split := strings.Split(s, ",")
+	intslice := make([]int, len(split))
 	sum, _ := strconv.Atoi(t)
-	split := strings.Split(s, "")
 	result := ""
-	for _, i := range split {
-		num, _ := strconv.Atoi(string(i))
-		if i != "," {
-			intslice = append(intslice, num)
-		}
+	for i := range split {
+		num, _ := strconv.Atoi(string(split[i]))
+
+		intslice[i] = num
+
 	}
 	for _, i := range intslice {
 		for _, j := range intslice {
@@ -51,6 +50,9 @@ func numberPair(s, t string) {
 			}
 		}
 	}
-	fmt.Println(result)
+	if result == "" {
+		fmt.Println("NULL")
+	}
+	fmt.Println(strings.Trim(result, ";"))
 
 }
